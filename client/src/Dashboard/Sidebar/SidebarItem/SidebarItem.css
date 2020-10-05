@@ -1,0 +1,33 @@
+.dashboardItem{
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    padding:15px 0 15px 10px;
+    line-height: 15px;
+    color:#aeb2b7;
+}
+
+.dashboardItem span{
+    color: #aeb2b7;
+}
+
+.dashboardItem:hover{
+    background-color:#75b038;
+    color: #ffffff;
+    
+}
+
+.link{
+    text-decoration: none;
+}
+link :focus, link :hover, link :visited, link :link, link :active {
+    text-decoration: none !important;
+}
+
+.dashboardItem :active,
+.dashboardItem .active{
+    color: #ffffff;
+    text-decoration: none;    
+}
+
