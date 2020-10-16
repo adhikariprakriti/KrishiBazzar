@@ -1,0 +1,44 @@
+.reviews{
+    margin-top: 20px;
+    padding:20px;
+}
+
+.review__content{
+    display:flex;
+    flex-direction: row;
+}
+.review__description{
+    display:inline-block !important;
+}
+.review__info{
+    word-wrap: break-word;
+}
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

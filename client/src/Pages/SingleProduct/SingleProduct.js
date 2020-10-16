@@ -7,19 +7,17 @@ import DashboardLayout from '../../Dashboard/DashboardLayout/DashboardLayout'
 const SingleProduct=()=>{
     return (
         <DashboardLayout>
-           <div className="MainContent">
-              <div className="Wrapper">
-                  <div className="ProductContent">
-                      <div className="ProductImage">
-                          <img className="Image" src={tomato} alt="product image"/>
-                      </div>
-            <div className="ProductInfo">
-             <h1>Tomato</h1>
-             <p>Price : <span >Rs 50/kg</span></p>
-             <p>Seller : Rameshwor Yadav</p>
-             <p className="ProductDescription">It is a freshly prepared in Organic Farms. </p>
+            <div className="Product">
+                <div className="ProductImage">
+                    <img className="Image" src={tomato} alt="product"/>
+                </div>
+                <div className="ProductInfo">
+                     <h1>Tomato</h1>
+                     <p>Price : <span >Rs 50/kg</span></p>
+                     <p>Seller : <span>Rameshwor Yadav</span></p>
+                     <p className="ProductDescription">It is a freshly prepared in Organic Farms. </p>
              
-               <div className="Quantity__button">
+                     <div className="Quantity__button">
                              Quantity:
                             <button>-</button>
                             <input value="2"/>
@@ -110,8 +108,8 @@ const SingleProduct=()=>{
           </div>
  
          </div>
-         </div>
-       </div>
+        
+     
     </DashboardLayout>
     )
 }

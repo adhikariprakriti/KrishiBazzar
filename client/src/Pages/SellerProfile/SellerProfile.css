@@ -1,0 +1,96 @@
+.wrapper{
+    margin-top:60px;
+    background: #E0E1E7;
+    height: fit-content;
+}
+.icon{
+    color:white;
+    font-size: 20px;
+}
+.seller{
+    padding: 20px 0;
+   
+}
+.profile{
+    width:88%;
+    margin: 0 auto;
+    background: #ffffff;
+    height: fit-content;
+    padding: 15px 15px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+}
+
+.profile img{
+    height:120px;
+    width:120px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 10px solid #f1f2f7;
+    vertical-align: middle
+}
+.profile h3{
+    font-weight: 700;
+    line-height: 26.4px;
+    font-size: 24px;
+    margin-bottom: 2px !important;
+}
+.star{
+    color:#FF7F41;
+   
+}
+.button{
+    margin-top: 10px;
+}
+
+@media (min-width:600px){
+    .profile{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0 auto;
+    }
+    .profile img{
+        margin-left: 30px;
+    }
+    
+    .partition{
+        margin: 25px 50px;
+        width:3px;
+        padding: 10% 0;
+        background-color: #FF7F41;
+
+    }
+}
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

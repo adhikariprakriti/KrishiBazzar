@@ -3,7 +3,6 @@
     height: 100%;
     background-color: #2f323a;
     z-index: 90;
-    padding-top: 60px ;
     position: fixed;
     overflow: auto;
 
@@ -47,9 +46,11 @@
     color: #ffffff;
 }
 
-.Open{
-    transform: translate(0);
-}
-.Close{
-    transform: translate(-100%);
-}
+
+
+    .Open{
+        transform: translate(0);
+    }
+    .Close{
+        transform: translate(-100%);
+    }
