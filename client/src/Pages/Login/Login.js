@@ -2,42 +2,90 @@ import React,{useState} from 'react'
 import './Login.css'
 import logo from '../../Assets/Images/logo.png'
 import Button from '../../Components/Button/Button'
+import validateInfo from '../../Validation/LoginValidation'
+import axios from 'axios'
 
 const Login=()=>{
-    const[email,setEmail]=useState('')
-    const[password,setPassword]=useState('')
+   const[phoneNo,setPhoneNo]=useState('')
+   const[password,setPassword]=useState('')
+   const [errors,setErrors]=useState({})
+ 
+   const setAuthorizationHeader=(token)=>{
+      const FBIdToken=`Bearer ${token}`
+      localStorage.setItem('FBIdToken',FBIdToken);
+      axios.defaults.headers.common['Authorization']=FBIdToken;       
+  }
 
-    return (
-        <div className="LoginBackground">
-           <div className="login__container">
-               <div className="login__logo">
-                  <img className="logo" src={logo} alt="Logo For KrishiBazzar" />
-               </div>
-            <div className="login__form">
-                   <h1>login</h1>
-                <form>
-                        <div className="form__group">
-                           <label >Email:</label>
-                           <input className="input" type="email" value={email} name="email" onChange={(e)=>setEmail(e.target.value)}/>
-                        </div>
-          
-                        <div className="form__group">
-                           <label>Password:</label>
-                           <input className="input" type="password" value={password} name="password" onChange={(e)=>setPassword(e.target.value)}/>
-                        </div>
 
-                        <Button type="large" >Log In</Button>
-                   </form> 
-                   
-               </div>
-               <div class="login__links">
-                  <a href="/">Forgot your password?</a><br/>
-                  <a href="/register">Not registered yet? Sign up</a><br/>
-                  <a href="/">Didn't receive confirmation instructions?</a><br/>
-                </div> 
-           </div>
-        </div>
-    )
+
+   const handleSubmit=(e)=>{
+     e.preventDefault();
+     const user={
+      phone: phoneNo,
+      password: password,
+   }
+   setErrors(validateInfo(user));
+  
+   if(Object.keys(errors).length === 0){
+      console.log("submitted successfully")
+      axios.post('http://localhost:4000/user/login',user)
+        .then(res=>{
+          console.log(res.data)
+          setAuthorizationHeader(res.data)
+         })
+         .then(err=>{
+           console.log(err);
+         })
+   }else{
+      console.log("error occured")
+   }
+     
 }
-
+   return (
+       <div className="LoginBackground">
+          <div className="login__container">
+              <div className="login__logo">
+                 <img className="logo" src={logo} alt="Logo For KrishiBazzar" />
+              </div>
+           <div className="login__form">
+                  <h1>login</h1>
+               <form onSubmit={handleSubmit} noValidate>
+                       <div className="form__group">
+                          <label >Phone Number:</label>
+                          <input className="input"
+                                 type="text"
+                                 value={phoneNo}
+                                 placeholder="Phone Number"
+                                 name="phoneNo"
+                                 onChange={(e)=>setPhoneNo(e.target.value)}/>
+                          {errors.phoneNo ? <p className="error">{errors.phoneNo}</p> : null}
+                       </div>
+        
+                       <div className="form__group">
+                          <label>Password:</label>
+                          <input className="input"
+                                 type="password"
+                                 value={password}
+                                 name="password"
+                                 placeholder="Password"
+                                 onChange={(e)=>setPassword(e.target.value)}/>
+                          {errors.password ? <p className="error">{errors.password}</p> : null}
+                       </div>
+ 
+                       <Button type="large" >Log In</Button>
+                  </form>
+                 
+              </div>
+              <div className="login__links">
+                 <a href="/">Forgot your password?</a><br/>
+                 <a href="/registration">Not registered yet? Sign up</a><br/>
+                 <a href="/">Didn't receive confirmation instructions?</a><br/>
+               </div>
+          </div>
+       </div>
+   )
+}
+ 
 export default Login;
+ 
+ 

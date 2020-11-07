@@ -1,0 +1,112 @@
+.bg{
+   height: 100vh;
+    /* The image used */
+    background-image: url("../../../Assets/Images/loginimg.jpg");
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   z-index:0;
+}
+.single_container{
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    padding-top:20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 80px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    
+}
+.border{
+    background-color: #75b038;
+    height:5px;
+    width:100%;
+ }
+ .message_header{
+    padding: 0px 15px;
+ }
+ .message_content{
+    flex-grow:1;
+    overflow-y:scroll;
+    padding: 0px 15px;
+    -webkit-overflow-scrolling:touch;
+ }
+ .message_content ul{
+      list-style: none;
+      padding-inline-start: 0px;
+ }
+#sender{
+    margin-bottom: 20px;
+}
+ #receiver{
+   margin-bottom: 20px;
+ }
+
+ .receiver{
+     background-color: #75b038;
+     color: white;
+     width: 70%;
+     border-radius: 4px;
+     padding: 10px 15px;
+     margin-left:auto;
+     margin-right: 0px;  
+ }
+ .sender{
+    background-color: #CDCDCD;
+    color: black;
+    width: 70%;
+    border-radius: 4px;
+    padding: 10px 15px;
+ }
+
+
+ .message_footer{
+    background-color: #e6eaee;
+    padding: 15px;
+    display: flex;
+    flex-shrink: 0;    
+ }
+
+ .message_footer form{
+     width: 100%;
+     margin: 0 auto;
+     flex-grow:1;
+     display:flex
+ 
+ }
+ .message_footer input{
+    border: 1px solid #e6eaee;
+    padding: 8px;
+    flex-grow:1
+
+ }
+  
+ .message_footer input:active,
+ .message_footer input:focus{
+    border: 1px solid #75b038;
+
+ }
+ ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #74b038da; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #75b038; 
+  }
+  

@@ -1,0 +1,56 @@
+.message_bg{
+    height: 100vh;
+    /* The image used */
+    background-image: url("../../Assets/Images/loginimg.jpg");
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   z-index:0;
+}
+.message_list_container{
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    padding:20px 20px;
+    margin-left: auto;
+   margin-right: auto;
+   margin-top: 60px;
+}
+.border{
+   background-color: #75b038;
+   height:5px;
+   width:100%;
+   margin-bottom: 20px;
+}
+.message_lists ul{
+    list-style: none;
+    padding-left: 0px !important;
+}
+.message_lists img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    margin-left: 20px;
+    border: 2px solid #75b038;
+}
+.message_list{
+    display: flex;
+    flex-direction: row;
+}
+
+.list{
+    margin-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.list:hover{
+    background-color: #F8F8F4;
+}
+.date{
+    color: black;
+    font-weight: 400;
+}
+

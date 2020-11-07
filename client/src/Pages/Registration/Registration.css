@@ -58,6 +58,11 @@ span{
 .policy{
     margin-bottom:15px;
 }
+.error{
+    color:red;
+    font-size: 12px
+ }
+  
 @media (max-width:600px){
     .radio_buttons{
         display:flex;

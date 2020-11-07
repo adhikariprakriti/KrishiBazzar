@@ -41,7 +41,7 @@
     margin-bottom: 0.5rem;
 }
 
-form{
+.login_form form{
    max-width:80%;
     margin: 0 auto;
 }
@@ -87,6 +87,10 @@ input:focus {
     font-size: 14px;
 
 }
+.error{
+    color:red;
+    font-size: 12px
+ }
 
 @media (max-width:600px){
    
