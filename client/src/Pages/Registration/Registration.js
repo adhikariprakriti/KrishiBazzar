@@ -18,6 +18,7 @@ const Registration=()=>{
    const [confirmPassword,setConfirmPassword]=useState('')
    const [i_am,setI_am]=useState('')
    const [errors,setErrors]=useState({})
+   const [errMessage,setErrMessage]=useState(null)
  
    const setAuthorizationHeader=(token)=>{
     const FBIdToken=`Bearer ${token}`
@@ -63,22 +64,23 @@ const handleSubmit=(e)=>{
        console.log("submitted successfully")
         axios.post('http://localhost:4000/user/register',newUser)
         .then(res=>{
-          console.log(res.data)
-          setAuthorizationHeader(res.data)
+          console.log(res)
+          if(res.data.errMessage){
+            setErrMessage(res.data.errMessage)
+          }else{
+              setErrMessage(null)
+              localStorage.setItem('userDetails',JSON.stringify(res.data));
+              setAuthorizationHeader(res.data.token)
+          }
          })
-         .then(err=>{
+         .catch(err=>{
            console.log(err);
          })
-    
     }else{
        console.log("error occured")
     }
-    
-   
-  
 }
-  
- 
+   
    return (
        <div className="registration__container">
            <div className="registration__logo">
@@ -244,6 +246,9 @@ const handleSubmit=(e)=>{
                <FormGroup className="policy">   
                     I agree with the <span>Agri Marketplace Terms</span> and <span>Privacy Policy</span>.
                </FormGroup>
+               {
+                   errMessage ?<div style={{backgroundColor: "red",opacity:"70%",padding:"5px 20px",marginBottom:"5px"}}>hello</div> : null
+               }
                <Button type="large">Register</Button>
             </Form>
        </div>

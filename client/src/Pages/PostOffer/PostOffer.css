@@ -1,0 +1,21 @@
+.PostOffer{
+    height:100vh;
+    background-color: #F7F9F7;
+    padding-top: 60px;
+    padding-left: 30px ;
+    padding-right: 30px;
+}
+.PostOffer_Container{
+     margin-top: 30px;
+     margin-bottom: 20px;
+     width: 50%;
+     margin-left:auto;
+     margin-right: auto;
+}
+.PostOffer_Container h1{
+    font-weight: 700;
+}
+.PostOffer_Container form{
+    margin-top: 30px;
+}
+

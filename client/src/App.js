@@ -8,11 +8,16 @@ import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import SellerProfile from './Pages/SellerProfile/SellerProfile';
 import Message from './Pages/Message/Message';
 import SingleMessage from './Pages/Message/SingleMessage/SingleMessage'
+import Home from './Pages/Home/Home'
+import PostOffer from './Pages/PostOffer/PostOffer';
+import Offers from './Pages/Offers/Offers';
+
  function App() {
   return (
     <div className="App">
       <BrowserRouter>
           <Switch>
+          <Route path='/' component={Home} exact/> 
               <Route path='/dashboard' component={DashboardHome} exact/> 
               <Route path='/singleProduct' component={SingleProduct} exact/>           
               <Route path='/login' component={Login} exact/>
@@ -20,7 +25,8 @@ import SingleMessage from './Pages/Message/SingleMessage/SingleMessage'
               <Route path='/sellerProfile' component={SellerProfile} exact/> 
               <Route path='/message' component={Message} exact/> 
               <Route path='/message/userid' component={SingleMessage} exact/> 
-
+              <Route path='/postoffer' component={PostOffer} exact/>
+              <Route path='/offers' component={Offers} exact/>
           </Switch>
         </BrowserRouter>
     </div>
