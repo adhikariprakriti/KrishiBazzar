@@ -14,7 +14,10 @@ const PostOffer=()=>{
     const [price,setPrice]=useState('')
     const [expiryDate,setExpiryDate]=useState('')
     const [description,setDescription]=useState('')
-
+    const header = {
+        'auth-token': localStorage.getItem('token'),
+      }
+      
     const product={
         category: category,
         name: name,
@@ -22,13 +25,14 @@ const PostOffer=()=>{
         price: price,
         expiryDate:  expiryDate,
         description: description,
+        user_id:localStorage.getItem('token')
     }
 
     const handleSubmit=(e)=>{
         e.preventDefault();
 
         console.log(product)
-        axios.post('http://localhost:4000/posts/',product)
+        axios.post('http://localhost:4000/posts/',{header:header},product)
 
     }
 
