@@ -4,6 +4,8 @@ import Toolbar from '../../Dashboard/Navbar/Toolbar/Toolbar'
 import './PostOffer.css'
 import { Label, Input,FormGroup} from 'reactstrap';
 import Button from '../../Components/Button/Button';
+import axios from 'axios'
+
 
 const PostOffer=()=>{
     const [category,setCategory]=useState('')
@@ -24,7 +26,10 @@ const PostOffer=()=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault();
+
         console.log(product)
+        axios.post('http://localhost:4000/posts/',product)
+
     }
 
     return(

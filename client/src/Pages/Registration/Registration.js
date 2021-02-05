@@ -55,7 +55,8 @@ const handleSubmit=(e)=>{
         district: district,
         province: provienceNumber,
         password: password,
-        role: i_am
+        role: i_am,
+        
       }
       console.log(newUser)
       setErrors(validateInfo(user));
