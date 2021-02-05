@@ -8,7 +8,7 @@ import axios from 'axios'
 
 
 const PostOffer=()=>{
-    const [category,setCategory]=useState('')
+    const [category,setCategory]=useState('fruits')
     const [name,setName]=useState('')
     const [quantity,setQuantity]=useState('')
     const [price,setPrice]=useState('')
@@ -35,7 +35,7 @@ const PostOffer=()=>{
 
         console.log(product)
 
-        axios.post('http://localhost:4000/posts/',{header:header},product)
+        axios.post('http://localhost:4000/posts/',{header:header,product:product})
 
     }
 
