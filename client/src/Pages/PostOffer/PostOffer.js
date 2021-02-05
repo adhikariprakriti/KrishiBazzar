@@ -14,10 +14,9 @@ const PostOffer=()=>{
     const [price,setPrice]=useState('')
     const [expiryDate,setExpiryDate]=useState('')
     const [description,setDescription]=useState('')
-    const userDetails = localStorage.getItem('userDetails')
-
+    console.log(localStorage.getItem('token'))
     const header = {
-        'auth-token': userDetails.token,
+        'auth-token': localStorage.getItem('token'),
       }
       
     const product={

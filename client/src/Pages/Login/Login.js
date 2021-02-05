@@ -32,6 +32,8 @@ const Login=()=>{
         .then(res=>{
           console.log(res.data)
           setAuthorizationHeader(res.data)
+          localStorage.setItem('token',JSON.stringify(res.data.token));
+
          })
          .then(err=>{
            console.log(err);

@@ -71,6 +71,8 @@ const handleSubmit=(e)=>{
           }else{
               setErrMessage(null)
               localStorage.setItem('userDetails',JSON.stringify(res.data));
+              localStorage.setItem('token',JSON.stringify(res.data.token));
+
               setAuthorizationHeader(res.data.token)
 
           }
