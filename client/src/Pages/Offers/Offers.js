@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useHistory } from 'react'
 import './Offers.css'
 import { Table } from 'reactstrap';
 import Aux from '../../hoc/Auxilliary'
@@ -47,7 +47,7 @@ offers.map((offeritem, index)=>{
                         <td>{offeritem.name}</td>
                         <td>{offeritem.quantity}</td>
                         <td>{offeritem.price}</td>
-                        <td><Button>View details</Button></td>
+                        <td><Button clicked={()=>useHistory.push("/selleroffer")}>View details</Button></td>
                      </tr>
   )
 })

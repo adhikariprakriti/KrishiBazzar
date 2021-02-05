@@ -6,6 +6,7 @@ const  Button = ({clicked,children, type}) => {
     return (
       <button
       type="submit"
+      onClick={clicked}
       className={type? myClass : "btn"}
       >
          {children}
