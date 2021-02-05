@@ -4,7 +4,9 @@ import tomato from '../../Assets/Images/tomato.jpeg'
 import { Form,Col, FormGroup, Label, Input } from 'reactstrap';
 import DashboardLayout from '../../Dashboard/DashboardLayout/DashboardLayout'
 
-const SingleProduct=()=>{
+const SingleProduct=(props)=>{
+  const {data}=props.location
+  console.log(data);
     return (
         <DashboardLayout>
             <div className="Product">
