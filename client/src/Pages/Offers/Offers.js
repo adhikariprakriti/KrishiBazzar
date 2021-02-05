@@ -1,32 +1,55 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import './Offers.css'
 import { Table } from 'reactstrap';
 import Aux from '../../hoc/Auxilliary'
 import Toolbar from '../../Dashboard/Navbar/Toolbar/Toolbar'
 import Button from '../../Components/Button/Button';
+import axios from 'axios'
 
 const Offers=()=>{
-
-  
+   var offers;
+   useEffect(()=>{
+      axios.get('http://localhost:4000/selleroffer')
+      .then(res=>{
+         offers=res.data
+         console.log(res)
+      })
+ },[])
 
     return(
         <Aux>
             <Toolbar/>
-            <div className="offers">
+              <div className="offers">
                <div className="offers_container">
                   <h1>Offers by sellers</h1>
                   <div className="offers_table">
                   <Table striped responsive>
                   <thead>
                      <tr>
-                        <th>Date</th>
-                        <th>Seller</th>
-                        <th>Product Info</th>
+                        <th>S.N</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
                         <th>Price per kg</th>
                         <th>View details</th>
                      </tr>
                   </thead>
+
                   <tbody>
+{
+offers.map((offeritem, index)=>{
+   return(
+      <tr>
+                        <td >{index+1}</td>
+                        <td>{offeritem.name}</td>
+                        <td>{offeritem.quantity}</td>
+                        <td>{offeritem.price}</td>
+                        <td><Button>View details</Button></td>
+                     </tr>
+  )
+})
+
+}
+
                      <tr>
                         <td >1</td>
                         <td>Mark</td>

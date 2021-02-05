@@ -26,7 +26,7 @@ import Offers from './Pages/Offers/Offers';
               <Route path='/message' component={Message} exact/> 
               <Route path='/message/userid' component={SingleMessage} exact/> 
               <Route path='/postoffer' component={PostOffer} exact/>
-              <Route path='/offers' component={Offers} exact/>
+              <Route path='/selleroffer' component={Offers} exact/>
           </Switch>
         </BrowserRouter>
     </div>
