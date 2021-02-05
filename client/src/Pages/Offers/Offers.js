@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import './Offers.css'
 import { Table } from 'reactstrap';
 import Aux from '../../hoc/Auxilliary'
@@ -7,14 +7,18 @@ import Button from '../../Components/Button/Button';
 import axios from 'axios'
 
 const Offers=()=>{
-   var offers;
+   const [offers,setOffers]=useState([])
+
+
    useEffect(()=>{
-      axios.get('http://localhost:4000/selleroffer')
+      axios.get('http://localhost:4000/offers/selleroffer')
       .then(res=>{
-         offers=res.data
-         console.log(res)
+         console.log(res.data.data);
+         setOffers(res.data.data)
+
       })
  },[])
+
 
     return(
         <Aux>
@@ -33,9 +37,9 @@ const Offers=()=>{
                         <th>View details</th>
                      </tr>
                   </thead>
-
                   <tbody>
-{
+                     
+ {
 offers.map((offeritem, index)=>{
    return(
       <tr>
@@ -47,31 +51,9 @@ offers.map((offeritem, index)=>{
                      </tr>
   )
 })
-
 }
 
-                     <tr>
-                        <td >1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td><Button>View details</Button></td>
-                     </tr>
-                     <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td><Button>View details</Button></td>
-                     </tr>
-                     <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td><Button>View details</Button></td>
-                     </tr>
-                 </tbody>
+                  </tbody>
               </Table>
 
                        
