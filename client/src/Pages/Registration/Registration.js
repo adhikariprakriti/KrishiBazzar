@@ -56,7 +56,7 @@ const handleSubmit=(e)=>{
         province: provienceNumber,
         password: password,
         role: i_am,
-        
+
       }
       console.log(newUser)
       setErrors(validateInfo(user));
@@ -72,6 +72,7 @@ const handleSubmit=(e)=>{
               setErrMessage(null)
               localStorage.setItem('userDetails',JSON.stringify(res.data));
               setAuthorizationHeader(res.data.token)
+
           }
          })
          .catch(err=>{
