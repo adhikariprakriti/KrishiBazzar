@@ -1,12 +1,33 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import './SingleProduct.css';
+import axios from 'axios';
 import tomato from '../../Assets/Images/tomato.jpeg'
 import { Form,Col, FormGroup, Label, Input } from 'reactstrap';
 import DashboardLayout from '../../Dashboard/DashboardLayout/DashboardLayout'
 
 const SingleProduct=(props)=>{
+  const[review,setReview]=useState('')
   const {data}=props.location
-  console.log(data);
+  console.log(data)
+  const header = {
+    'auth-token': localStorage.getItem('token'),
+  }
+
+  const reviewdata={
+    review: review,
+    role: JSON.parse(localStorage.getItem('userDetails')).role,
+    id: data.userId
+
+    }
+
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(review)
+    axios.post('http://localhost:4000/addreview',{header:header,review:reviewdata})
+
+  }
+
     return (
         <DashboardLayout>
             <div className="Product">
@@ -53,21 +74,21 @@ const SingleProduct=(props)=>{
              
          </div>
          </div>
-         
-         
-         
-         
-         
+      
          <div className="ReviewSection">
           <div className="AddReview">
              <h1>ADD review</h1>
              <hr/>
              <p>we won't publish your email or phone Number</p>
-             <Form className="ReviewForm">    
+             <Form className="ReviewForm" onSubmit={handleSubmit}>    
              <FormGroup row>
               <Label className="reviewLabel" for="reviewText" sm={1}>Review</Label>
                <Col sm={6}>
-                 <Input type="textarea" name="text" id="reviewText" />
+                 <Input type="textarea" 
+                        name="text"
+                        value={review}
+                        onChange={e=>setReview(e.target.value)}
+                        id="reviewText" />
                  <button className="button__header" style={{marginTop:"5px"}}>post</button>
                </Col>
             </FormGroup>

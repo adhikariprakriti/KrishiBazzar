@@ -106,7 +106,7 @@ const PostOffer=()=>{
                                  placeholder="product description" required/>
                           </FormGroup>
 
-                          <Button>Submit</Button>
+                          <Button clicked={handleSubmit}>Submit</Button>
                      </form>
 
                 </div>
