@@ -18,9 +18,9 @@ const Offers=()=>{
       .then(res=>{
          console.log(res.data.data);
          setOffers(res.data.data)
-
       })
  },[])
+ console.log(offers)
 
 
     return(
