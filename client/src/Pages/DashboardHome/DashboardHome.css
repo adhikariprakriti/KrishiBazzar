@@ -1,0 +1,33 @@
+.reviews-main{
+    margin-left: 80px;
+    margin-top: 60px;
+    margin-right: auto;
+    padding-top: 20px;
+
+}
+.reviews-main h1{
+  color: #75B038;
+}
+.reviews-main h4{
+    margin-bottom: 4px;
+    color: brown;
+    font-weight: 600;
+    font-size: 20px;
+    color: #595959;
+
+}
+
+.date{
+    font-weight: 500;
+    font-size: 16px;
+    color: #595959;
+}
+.review-description{
+    font-weight: 500;
+    font-weight: 18px;
+    color: #595959;
+}
+.single-review{
+    display: flex;
+    flex-direction: row;
+}

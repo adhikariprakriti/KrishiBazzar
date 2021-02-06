@@ -11,6 +11,7 @@ import SingleMessage from './Pages/Message/SingleMessage/SingleMessage'
 import Home from './Pages/Home/Home'
 import PostOffer from './Pages/PostOffer/PostOffer';
 import Offers from './Pages/Offers/Offers';
+import Top from './Pages/Top/Top';
 
  function App() {
   return (
@@ -27,6 +28,8 @@ import Offers from './Pages/Offers/Offers';
               <Route path='/message/userid' component={SingleMessage} exact/> 
               <Route path='/postoffer' component={PostOffer} exact/>
               <Route path='/selleroffer' component={Offers} exact/>
+              <Route path='/topseller' component={Top} exact/>
+
           </Switch>
         </BrowserRouter>
     </div>

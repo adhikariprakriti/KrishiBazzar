@@ -16,7 +16,7 @@ const SingleProduct=(props)=>{
   const reviewdata={
     review: review,
     role: JSON.parse(localStorage.getItem('userDetails')).role,
-    id: data.userId
+    //id: data.userId
 
     }
 
