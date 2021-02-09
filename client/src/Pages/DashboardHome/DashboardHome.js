@@ -6,14 +6,14 @@ import DashboardLayout from '../../Dashboard/DashboardLayout/DashboardLayout'
 const DashboardHome=()=>{
     const [reviews,setReviews]=useState([1,2,3])
     useEffect(()=>{
-        axios.get(`http://localhost:4000/personalreview/${JSON.parse(localStorage.getItem('userDetails'))._id} `)
-        .then(res=>{
+        axios.get(`http://localhost:4000/personalreview/${JSON.parse(localStorage.getItem('userDetails'))._id}`)  
+         .then(res=>{
            console.log(res)
-        })
-   },[])
+        }).catch(error=>console.log(error))
+           },[])
   
     return (
-        <DashboardLayout>
+        <DashboardLayout> 
             <div className="reviews-main">
                 <h1>Recent Reviews</h1>
                 {

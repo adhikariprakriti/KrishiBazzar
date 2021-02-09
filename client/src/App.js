@@ -11,14 +11,15 @@ import SingleMessage from './Pages/Message/SingleMessage/SingleMessage'
 import Home from './Pages/Home/Home'
 import PostOffer from './Pages/PostOffer/PostOffer';
 import Offers from './Pages/Offers/Offers';
-import Top from './Pages/Top/Top';
+import Topsellers from '../src/Pages/TopSellers/TopSellers';
+import TopBuyers from '../src/Pages/TopBuyers/TopBuyers';
 
  function App() {
   return (
     <div className="App">
       <BrowserRouter>
           <Switch>
-          <Route path='/' component={Home} exact/> 
+              <Route path='/' component={Home} exact/> 
               <Route path='/dashboard' component={DashboardHome} exact/> 
               <Route path='/singleProduct' component={SingleProduct} exact/>           
               <Route path='/login' component={Login} exact/>
@@ -28,8 +29,8 @@ import Top from './Pages/Top/Top';
               <Route path='/message/userid' component={SingleMessage} exact/> 
               <Route path='/postoffer' component={PostOffer} exact/>
               <Route path='/selleroffer' component={Offers} exact/>
-              <Route path='/topseller' component={Top} exact/>
-
+              <Route path='/topseller' component={Topsellers} exact/>
+              <Route path='/topBuyer' component={TopBuyers} exact/>
           </Switch>
         </BrowserRouter>
     </div>

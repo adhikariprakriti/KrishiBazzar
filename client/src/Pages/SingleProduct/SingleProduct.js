@@ -24,7 +24,7 @@ const SingleProduct=(props)=>{
   const handleSubmit=(e)=>{
     e.preventDefault();
     console.log(review)
-    axios.post('http://localhost:4000/addreview',{header:header,reviewData:reviewdata})
+    axios.post('http://localhost:4000/addreview/',{header:header,reviewData:reviewdata})
 
   }
 

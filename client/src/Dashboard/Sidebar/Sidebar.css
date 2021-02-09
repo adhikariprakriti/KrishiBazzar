@@ -5,7 +5,7 @@
     z-index: 90;
     position: fixed;
     overflow: auto;
-
+    padding-top: 60px;
 }
 
 .image{

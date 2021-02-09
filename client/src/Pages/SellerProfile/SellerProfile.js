@@ -31,15 +31,11 @@ function SellerProfile() {
                     <p>Location : Bhaktapur</p>
                     <p>mobile number : 9860342588</p>
                     <p>Email : stefan@gmail.com;</p>
-                    <p className="button"><Button><FaEnvelope className="icon"/> Send Message</Button></p>
-                  
+                    <p className="button"><Button><FaEnvelope className="icon"/> Send Message</Button></p>  
                    </div>
                 </div>
                 <PostReviews/>
                 <Reviews/>
-                
-
-
              </div>  
             </div>   
         </DashboardLayout>

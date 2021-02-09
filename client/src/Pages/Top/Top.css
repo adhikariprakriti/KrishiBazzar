@@ -1,15 +1,35 @@
 .top-main{
-    margin: 60px 60px;
+    margin: 30px 60px;
 }
 .single-card{
     padding: 20px;
     margin-bottom: 16px;
     margin-left: 10px;
     margin-right: 10px;
-    width: 30%;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     box-shadow: 0px 1px 3px rgb(0 0 0 / 10%);
+    align-items: center;
+}
+
+.single-card img{
+    height:120px;
+    width:120px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 10px solid #f1f2f7;
+    vertical-align: middle;
+    margin-bottom: 15px;
+
+}
+
+.border{
+    padding:0 20px;
+    width:5px;
+    margin-bottom: 6px;
+}
+.user-review{
+    margin-bottom: 10px;
 }
