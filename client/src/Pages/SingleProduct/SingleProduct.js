@@ -16,14 +16,15 @@ const SingleProduct=(props)=>{
   const reviewdata={
     review: review,
     role: JSON.parse(localStorage.getItem('userDetails')).role,
-    //id: data.userId
+    reviewerId: JSON.parse(localStorage.getItem('userDetails'))._id,
+    sellerId: data.userId
 
     }
 
 
   const handleSubmit=(e)=>{
     e.preventDefault();
-    console.log(review)
+    console.log(reviewdata,"test")
     axios.post('http://localhost:4000/addreview/',{header:header,reviewData:reviewdata})
 
   }
