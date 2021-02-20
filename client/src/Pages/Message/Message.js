@@ -6,21 +6,32 @@ import io from 'socket.io-client'
 import './Message.css'
 import tomato from '../../Assets/Images/tomato.jpeg'
 var socket;
-const ENDPOINT = "http://localhost:4000/"
-const Message=()=>{
+
+
+const Message=(props)=>{
+    const {data}=props.location
+    const receiverId = data.userId
+   
+    const senderId = JSON.parse(localStorage.getItem('userDetails'))._id
+    const ENDPOINT = "http://localhost:4000/"
 
     useEffect (()=>{
-        // const {name,room,id} = queryString.parse(location.search)
         socket = io(ENDPOINT)
         socket.emit("connection",()=>{})
-        
+        socket.on("test",()=>{console.log("listening test event");})
         return()=>{
             socket.emit("disconnect");
             socket.off()
         }
+  
+     
          
     }, [])
-
+    const sendMessage=()=>{
+        console.log("button msg");
+        socket.emit("sendOffer",{senderId,receiverId},()=>{console.log("first offer");})
+        socket.emit("sendMessage",{senderId,receiverId,message:"hey girls"},()=>{console.log("first message");})
+        }
 
     let history=useHistory()
     const handleClick=()=>{
@@ -59,6 +70,7 @@ const Message=()=>{
                                          <p>Prakriti Adhikari</p>
                                           <span className="date"> 2:23pm nov1,2020 </span>                                     
                                      </div>
+                                     <button onClick={sendMessage}> send</button>
                                  </div>
                              </li>
                              <li className="list">
