@@ -19,18 +19,19 @@ const Message=(props)=>{
         socket = io(ENDPOINT)
         socket.emit("connection",()=>{})
         socket.on("test",()=>{console.log("listening test event");})
+        localStorage.setItem('receiverId',receiverId);
         return()=>{
             socket.emit("disconnect");
             socket.off()
         }
-  
+        
      
          
     }, [])
     const sendMessage=()=>{
         console.log("button msg");
         socket.emit("sendOffer",{senderId,receiverId},()=>{console.log("first offer");})
-        socket.emit("sendMessage",{senderId,receiverId,message:"hey girls"},()=>{console.log("first message");})
+        socket.emit("sendMessage",{senderId,receiverId,message:"starting conversation"},()=>{console.log("first message");})
         }
 
     let history=useHistory()

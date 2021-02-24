@@ -1,11 +1,81 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import './SingleMessage.css'
 import Toolbar from '../../../Dashboard/Navbar/Toolbar/Toolbar'
 import Aux from '../../../hoc/Auxilliary'
 import Button from '../../../Components/Button/Button'
+import io from 'socket.io-client'
+var socket;
 
 
 const SingleMessage=()=>{
+    const [singleMessage,setSingleMessage]=useState('')
+    const ENDPOINT = "http://localhost:4000/"
+    useEffect (()=>{
+        socket = io(ENDPOINT)
+        socket.emit("connection",()=>{})
+        var receiverId = localStorage.getItem('receiverId')
+        var senderId= JSON.parse(localStorage.getItem('userDetails'))._id
+        var role= JSON.parse(localStorage.getItem('userDetails')).role
+
+        if(role == "buyer"){
+        var roomId = senderId+'{'+receiverId
+
+        }
+        else{
+        var roomId = receiverId+'{'+senderId
+
+        }
+            socket.on(roomId,({message})=>{
+                console.log(roomId);
+                console.log(message, "message from backend");
+                document.querySelector("#message").insertAdjacentHTML("beforeEnd",
+                ` <li id="receiver">
+                    <div className="receiver"
+                    style="background-color: #75b038;
+                        color: white;
+                        width: 70%;
+                        border-radius: 4px;
+                        padding: 10px 15px;
+                        margin-left:auto;
+                        margin-right: 0px;">
+                       ${message}
+                    </div>
+                    </li>
+                `)
+            })
+           
+        socket.on("callbackmsg",({message})=>{
+            console.log(message,"what to do with this message now");
+        })
+        return()=>{
+            socket.emit("disconnect");
+            socket.off()
+        }
+         
+    }, [])
+    const sendSingleMessage=()=>{
+        var receiverId = localStorage.getItem('receiverId')
+        var senderId= JSON.parse(localStorage.getItem('userDetails'))._id
+        var role= JSON.parse(localStorage.getItem('userDetails')).role
+        console.log(singleMessage);
+        socket.emit("sendSingleMessage",{message:singleMessage,role,senderId,receiverId},function(data){
+            console.log(data);
+            
+            document.querySelector("#message").insertAdjacentHTML("beforeEnd",
+            ` <li id="sender">
+                <div className="sender" 
+                style="background-color: #CDCDCD;
+                color: black;
+                width: 70%;
+                border-radius: 4px;
+                padding: 10px 15px;">
+                   ${singleMessage}
+                </div>
+                </li>
+            `)
+            
+        })
+        }
     return(
         <Aux>
             <div className="bg">
@@ -16,36 +86,14 @@ const SingleMessage=()=>{
                    </div>
                    <div className="border"></div>
                    <div className="message_content">
-                       <ul>
-                           <li id="sender">
-                               <div className="sender">
-                                   Hey!This is Bhawana.Many people say conversational UI is the future of web interface. Some might say it`s just another design fad or that text-based interfaces aren`t anything new with the advent of iPhone Messages, Slack or Facebook Messenger the way we exchange information changed irreversibly. Text messages have became extremely natural way of communicating these days. So in this post we`ve gathered 40 Inspiring Chat UI Designs for inspiration that you can use to further the design of chat UI elements to create great experiences with users.
-
-
-                               </div>
-                           </li>
-                           <li id="receiver"> 
-                               <div className="receiver">
-                                    Hi Bhawana.its me prakriti
-                               </div>
-                          </li>
-                          <li id="sender">
-                               <div className="sender">
-                                   Hey!This is Bhawana
-                               </div>
-                           </li>
-                           <li id="receiver">
-                               <div className="receiver">
-                                    Hi Bhawana.its me prakriti
-                               </div>
-                          </li>
+                       <ul id="message">
+                           
                        </ul>
                    </div>
                    <div className="message_footer">
-                       <form method="POST" className="message_form">
-                       <input name="message" type="text" placeholder="Type Message....." value="" required autoComplete="off"/>
-                       <Button>Send</Button>
-                       </form>
+                       <input name="message" type="text" placeholder="Type Message....."  required autoComplete="off"
+                       onChange={(e)=>setSingleMessage(e.target.value)}/>
+                       <Button clicked={sendSingleMessage}>Send</Button>
                     </div>
                 </div>
                 
