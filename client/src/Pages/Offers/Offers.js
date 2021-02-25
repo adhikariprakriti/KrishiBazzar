@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from 'react'
 import { useHistory } from "react-router-dom";
-
 import './Offers.css'
 import { Table } from 'reactstrap';
 import Aux from '../../hoc/Auxilliary'

@@ -9,7 +9,7 @@ const Home=()=>{
         <Aux>
            <Toolbar/>
            <div className="container_banner">
-
+               <h1 className="heading">Make your Business Visible</h1>
            </div>
         </Aux>
     )

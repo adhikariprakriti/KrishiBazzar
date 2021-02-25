@@ -1,4 +1,8 @@
 
 .list{
 color:white;
+list-style: none;
+}
+.list :hover{
+    background-color: none;
 }

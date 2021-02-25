@@ -1,7 +1,17 @@
 .container_banner{
     background-image:url(../../Assets/Images/loginimg.jpg);
     height: 500px;
-    object-fit: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    z-index:0;
+  
+}
+.heading{
+    padding-top: 200px;
+    text-align: center;
+    color: white;
+    font-size: 84px;
+    font-weight: 900;
+    line-height: 200%;
 }
