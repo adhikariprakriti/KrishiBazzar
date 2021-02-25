@@ -10,6 +10,7 @@ var socket;
 const SingleMessage=()=>{
     const [singleMessage,setSingleMessage]=useState('')
     const ENDPOINT = "http://localhost:4000/"
+    
     useEffect (()=>{
         socket = io(ENDPOINT)
         socket.emit("connection",()=>{})
@@ -25,9 +26,10 @@ const SingleMessage=()=>{
         var roomId = receiverId+'{'+senderId
 
         }
-            socket.on(roomId,({message})=>{
-                console.log(roomId);
-                console.log(message, "message from backend");
+        socket.emit("fetchmessages",{roomId},async function(data){
+            var data = await data.data
+            {data.forEach((eachMessage)=>{
+                
                 document.querySelector("#message").insertAdjacentHTML("beforeEnd",
                 ` <li id="receiver">
                     <div className="receiver"
@@ -38,18 +40,35 @@ const SingleMessage=()=>{
                         padding: 10px 15px;
                         margin-left:auto;
                         margin-right: 0px;">
-                       ${message}
+                       ${eachMessage.message}
                     </div>
-                    </li>
+                </li>
                 `)
-            })
-           
-        socket.on("callbackmsg",({message})=>{
-            console.log(message,"what to do with this message now");
+         })}
+
         })
+        
+        socket.on(roomId,({message,role})=>{
+            console.log(roomId);
+            console.log(message, "message from backend");
+            document.querySelector("#message").insertAdjacentHTML("beforeEnd",
+            ` <li id="receiver">
+                <div className="receiver"
+                style="background-color: #CDCDCD;
+                color: black;
+                width: 70%;
+                border-radius: 4px;
+                padding: 10px 15px;">
+                    ${message}
+                </div>
+                </li>
+            `)
+        })
+           
+        
         return()=>{
-            socket.emit("disconnect");
-            socket.off()
+            // socket.emit("disconnect");
+            // socket.off()
         }
          
     }, [])
@@ -64,11 +83,13 @@ const SingleMessage=()=>{
             document.querySelector("#message").insertAdjacentHTML("beforeEnd",
             ` <li id="sender">
                 <div className="sender" 
-                style="background-color: #CDCDCD;
-                color: black;
+                style="background-color: #75b038;
+                color: white;
                 width: 70%;
                 border-radius: 4px;
-                padding: 10px 15px;">
+                padding: 10px 15px;
+                margin-left:auto;
+                margin-right: 0px;">
                    ${singleMessage}
                 </div>
                 </li>
