@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { useHistory } from "react-router-dom";
 import './Login.css'
 import logo from '../../Assets/Images/logo.png'
 import Button from '../../Components/Button/Button'
@@ -9,6 +10,7 @@ const Login=()=>{
    const[phoneNo,setPhoneNo]=useState('')
    const[password,setPassword]=useState('')
    const [errors,setErrors]=useState({})
+   const history = useHistory();
  
    const setAuthorizationHeader=(token)=>{
       const FBIdToken=`Bearer ${token}`
@@ -33,6 +35,9 @@ const Login=()=>{
           console.log(res.data)
           setAuthorizationHeader(res.data)
           localStorage.setItem('token',JSON.stringify(res.data.token));
+          history.push({
+            pathname: "/dashboard",
+         })
 
          })
          .then(err=>{

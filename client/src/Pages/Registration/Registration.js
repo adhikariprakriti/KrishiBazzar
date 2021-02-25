@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { useHistory } from "react-router-dom";
 import { Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
 import './Registration.css';
 import Button from '../../Components/Button/Button'
@@ -19,6 +20,7 @@ const Registration=()=>{
    const [i_am,setI_am]=useState('')
    const [errors,setErrors]=useState({})
    const [errMessage,setErrMessage]=useState(null)
+   const history = useHistory();
  
    const setAuthorizationHeader=(token)=>{
     const FBIdToken=`Bearer ${token}`
@@ -74,6 +76,9 @@ const handleSubmit=(e)=>{
               localStorage.setItem('token',JSON.stringify(res.data.token));
 
               setAuthorizationHeader(res.data.token)
+              history.push({
+                pathname: "/dashboard",
+             })
 
           }
          })

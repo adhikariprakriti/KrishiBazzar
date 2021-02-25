@@ -9,7 +9,8 @@ const SidebarItem=({label,icon,link})=>{
                 component={Link}
                 to={link}
                 >
-                {icon} {label}
+                     <Link className="dashboardItem" to={link}> {icon} {label}</Link>
+               
             </li>
        
     )

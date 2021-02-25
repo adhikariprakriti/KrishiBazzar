@@ -55,7 +55,7 @@ offers.map((offeritem, index)=>{
                            data: offeritem
                         })}>View details</Button></td>
                         <td><Button clicked={()=>history.push({
-                           pathname: "/message",
+                           pathname: "/message/userid",
                            data: offeritem
                         })}>Message</Button></td>
                      </tr>

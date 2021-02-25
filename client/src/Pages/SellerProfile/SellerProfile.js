@@ -20,7 +20,7 @@ function SellerProfile() {
                     </div>
                     <div className="partition"></div>
                    <div>
-                      <h3>Stefan Salvator</h3>
+                      <h3>{JSON.parse(localStorage.getItem('userDetails')).fname +JSON.parse(localStorage.getItem('userDetails')).lname}</h3>
                     <p> 
                       <MdStar className="star"/>
                       <MdStar className="star"/>
@@ -28,9 +28,9 @@ function SellerProfile() {
                       <MdStarHalf className="star"/>
                       <MdStarBorder className="star"/>
                     </p>
-                    <p>Location : Bhaktapur</p>
-                    <p>mobile number : 9860342588</p>
-                    <p>Email : stefan@gmail.com;</p>
+                    <p>Location : {JSON.parse(localStorage.getItem('userDetails')).district}</p>
+                    <p>mobile number : {JSON.parse(localStorage.getItem('userDetails')).phone}</p>
+                    <p>Email : {JSON.parse(localStorage.getItem('userDetails')).fname+"@gmail.com"}</p>
                     <p className="button"><Button><FaEnvelope className="icon"/> Send Message</Button></p>  
                    </div>
                 </div>

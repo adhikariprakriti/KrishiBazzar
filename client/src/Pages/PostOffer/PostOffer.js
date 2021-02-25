@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import Aux from '../../hoc/Auxilliary'
+import { useHistory } from "react-router-dom";
 import Toolbar from '../../Dashboard/Navbar/Toolbar/Toolbar'
 import './PostOffer.css'
 import { Label, Input,FormGroup} from 'reactstrap';
@@ -14,6 +15,8 @@ const PostOffer=()=>{
     const [price,setPrice]=useState('')
     const [expiryDate,setExpiryDate]=useState('')
     const [description,setDescription]=useState('')
+    const history = useHistory();
+
     const header = {
         'auth-token': localStorage.getItem('token'),
       }
@@ -35,6 +38,9 @@ const PostOffer=()=>{
         console.log(product)
 
         axios.post('http://localhost:4000/posts/',{header:header,product:product})
+        history.push({
+            pathname: "/selleroffer",
+         })
 
     }
 

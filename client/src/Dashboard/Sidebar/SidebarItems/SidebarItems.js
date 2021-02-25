@@ -5,6 +5,7 @@ import {AiFillDashboard,AiFillShopping,AiFillEdit} from 'react-icons/ai';
 import {FaShoppingCart,FaUser} from 'react-icons/fa';
 import {BsChatFill} from 'react-icons/bs';
 import {MdPayment} from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 
 function SidebarItems() {
@@ -15,11 +16,15 @@ function SidebarItems() {
                icon={<AiFillDashboard style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
                link="/dashboard"
                />
-             
+              <SidebarItem 
+               label="Sell products"
+               icon={<BsChatFill style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
+               link="/postoffer"
+               />
              <SidebarItem 
                label="Buy Product"
                icon={<AiFillShopping style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
-               link="/dashboard"
+               link="/selleroffer"
                />
             <SidebarItem 
                label="Cart"
@@ -27,13 +32,19 @@ function SidebarItems() {
                link="/dashboard"
                />
              <SidebarItem 
-               label="View Seller"
+               label="Top Seller"
                icon={<FaUser style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
-               link="/dashboard"
+               link="/topseller"
+               />
+                <SidebarItem 
+               label="Top Buyer"
+               icon={<FaUser style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
+               link="/topBuyer"
                />
              <SidebarItem 
                label="Chat Room"
                icon={<BsChatFill style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
+               link="/message"
                />
              <SidebarItem 
                label="Update Profile"
