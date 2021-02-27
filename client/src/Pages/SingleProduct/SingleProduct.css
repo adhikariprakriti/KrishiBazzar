@@ -6,10 +6,37 @@
     text-align: center;
     margin-bottom: 30px;
 }
+.Quantity__button{
+    margin-top: 10px;
+   margin-bottom: 18px;
+}
+.Quantity__button input{
+    margin-left: 10px;
+    
+}
+.Delivary__button input{
+    margin-left: 10px;
+}
+.cross_btn{
+    float: right;
+    margin-bottom: 10px;
+
+}
+.payment_success{
+    text-align: center;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 200%;
+}
 .ProductInfo{
 text-align: center;
 }
-
+.Paymethod__method{
+    margin-top: 15px;
+}
+.cross_btn{
+    float: right;
+}
 .ProductInfo span,
 .ProductInfo h1{
     font-weight: 600;

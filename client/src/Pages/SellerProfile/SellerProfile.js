@@ -9,6 +9,8 @@ import {FaEnvelope} from 'react-icons/fa'
 import Button from '../../Components/Button/Button'
 import Reviews from '../../Components/Reviews/Reviews';
 import Modal from '../../Components/Modal/modal';
+import { ImCross } from 'react-icons/im';
+
 
 function SellerProfile() {
     const [show,setShow]=useState(false)
@@ -23,6 +25,7 @@ function SellerProfile() {
              <div className="seller">
                 <div className="profile">
                 <Modal show={show} clicked={()=>setShow(!show)}>
+                <ImCross onClick={()=>setShow(!show) } className="cross_btn"/>
                     <PostReviews/>
                 </Modal>
 

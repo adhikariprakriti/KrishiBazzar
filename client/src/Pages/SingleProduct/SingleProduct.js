@@ -4,9 +4,17 @@ import axios from 'axios';
 import tomato from '../../Assets/Images/tomato.jpeg'
 import { Form,Col, FormGroup, Label, Input } from 'reactstrap';
 import DashboardLayout from '../../Dashboard/DashboardLayout/DashboardLayout'
+import Button from "../../Components/Button/Button"
+import KhaltiCheckout from "khalti-checkout-web";
+import Modal from "../../Components/Modal/modal";
+import { ImCross } from 'react-icons/im';
 
 const SingleProduct=(props)=>{
   const[review,setReview]=useState('')
+  const[quantity,setQuantity]=useState('')
+  const[date,setDate]=useState('')
+  const[show,setShow]=useState(false)
+
   const {data}=props.location
   console.log(data)
   const header = {
@@ -28,10 +36,54 @@ const SingleProduct=(props)=>{
     axios.post('http://localhost:4000/addreview/',{header:header,reviewData:reviewdata})
 
   }
+  const handlePayment=()=>{
+    var config = {
+      // replace the publicKey with yours
+      "publicKey": "test_public_key_6d8add8f0f114055a31fe48bc822e0a7",
+      "productIdentity": "1234567890",
+      "productName": "Dragon",
+      "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+      "paymentPreference": [
+          "KHALTI",
+          "EBANKING",
+          "MOBILE_BANKING",
+          "CONNECT_IPS",
+          "SCT",
+          ],
+      "eventHandler": {
+          onSuccess (payload) {
+              // hit merchant api for initiating verfication
+              console.log(payload);
+              // alert("successful")
+              setShow(true)
+              
+          },
+          onError (error) {
+              console.log(error,"here is error");
+          },
+          onClose () {
+              console.log('widget is closing');
+          }
+      }
+  };
+
+  var checkout = new KhaltiCheckout(config);
+  var btn = document.getElementById("payment-button");
+  btn.onclick = function () {
+      // minimum transaction amount must be 10, i.e 1000 in paisa.
+      checkout.show({amount: 1000});
+  }
+  }
 
     return (
         <DashboardLayout>
+           
+         
             <div className="Product">
+            <Modal show={show} clicked={()=>setShow(!show)}>
+            <ImCross onClick={()=>setShow(!show) } className="cross_btn"/>
+                    <h2 className="payment_success">Payment Successful..</h2>
+                </Modal>
                 <div className="ProductImage">
                     <img className="Image" src={tomato} alt="product"/>
                 </div>
@@ -43,33 +95,19 @@ const SingleProduct=(props)=>{
              
                      <div className="Quantity__button">
                              Quantity:
-                            <button>-</button>
-                            <input value="2"/>
-                            <button>+</button>           
+                           <input onChange={(e)=>setQuantity(e.target.value)}></input>
+                           {console.log(quantity)}           
                </div>
                 
                <div className="Delivary__button">
-                   Delivary:
-                   <button>-</button>
-                   <input value="2"/>
-                   <button>+</button>           
+                   Delivery date:
+                   <input onChange={(e)=>setDate(e.target.value)}></input>  
+                   {console.log(date)}           
+
                </div>
                    
               <div className="Paymethod__method">
-                <p>Payment Method :</p>
-                <FormGroup check>
-                       <Label check>
-                       <Input type="radio" name="radio1" />{' '}
-                       Cash On Delivary
-                       </Label>
-                </FormGroup>
-                <FormGroup check>
-                       <Label check>
-                       <Input type="radio" name="radio1" />{' '}
-                        Instant Payment
-                       </Label>
-                </FormGroup>
-                <button className="button__header">post</button>
+                <Button id="payment-button" clicked={handlePayment}>Confirm Order</Button>
               </div>
  
              
@@ -95,7 +133,7 @@ const SingleProduct=(props)=>{
             </FormGroup>
             </Form>
            </div>
-           <h1>Reviews</h1>
+           {/* <h1>Reviews</h1>
            <hr/>
            <div className="Review">
              <div className="ReviewContent">
@@ -129,7 +167,7 @@ const SingleProduct=(props)=>{
                   </span>
                </div>
              </div>
-          </div>
+          </div> */}
  
          </div>
         
