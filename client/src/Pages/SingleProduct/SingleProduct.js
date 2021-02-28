@@ -148,12 +148,12 @@ const SingleProduct=(props)=>{
            </div>
          </div> */}
 
-         <h3>
+         <p className="additional_text">
            Please contact the seller to be sure about delivery location.
             You can chat with the seller first, be sure about quantity and price of offer before payment.
             Once you pay ,its not refundable
 
-         </h3>
+         </p>
         
      
     </DashboardLayout>

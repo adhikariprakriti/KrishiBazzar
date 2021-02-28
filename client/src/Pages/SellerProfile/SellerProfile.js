@@ -17,7 +17,8 @@ function SellerProfile() {
     const [activeOrder,setActiveOrder]=useState([])
 
     useEffect(() => {
-      axios.get(`http://localhost:4000/offers/activebuyeroffer/${JSON.parse(localStorage.getItem('userDetails'))._id}`)  
+       var role = JSON.parse(localStorage.getItem('userDetails')).role
+      axios.get(`http://localhost:4000/offers/active${role}offer/${JSON.parse(localStorage.getItem('userDetails'))._id}`)  
       .then(res=>{
          var data = res.data.data
          setActiveOrder(data)
