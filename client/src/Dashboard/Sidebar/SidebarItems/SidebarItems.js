@@ -16,16 +16,22 @@ function SidebarItems() {
                icon={<AiFillDashboard style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
                link="/dashboard"
                />
-              <SidebarItem 
-               label="Sell products"
-               icon={<BsChatFill style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
-               link="/postoffer"
-               />
-             <SidebarItem 
-               label="Buy Product"
-               icon={<AiFillShopping style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
-               link="/selleroffer"
-               />
+              { console.log((JSON.parse(localStorage.getItem('userDetails')).role),"local;")}
+               {(JSON.parse(localStorage.getItem('userDetails')).role ==="buyer")?
+                 <SidebarItem 
+                 label="Buy Product"
+                 icon={<AiFillShopping style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
+                 link="/selleroffer"
+                 />
+
+              :
+                 <SidebarItem 
+                 label="Sell products"
+                 icon={<BsChatFill style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
+                 link="/postoffer"
+                 />
+               }
+             
             <SidebarItem 
                label="Cart"
                icon={<FaShoppingCart style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
@@ -37,9 +43,14 @@ function SidebarItems() {
                link="/topseller"
                />
                 <SidebarItem 
-               label="Top Buyer"
+               label="Top Buyers"
                icon={<FaUser style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
                link="/topBuyer"
+               />
+                <SidebarItem 
+               label="Top Sellers"
+               icon={<FaUser style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
+               link="/topseller"
                />
              <SidebarItem 
                label="Chat Room"

@@ -42,20 +42,24 @@ const Offers=()=>{
                   <tbody>
                      
  {
-offers.map((offeritem, index)=>{
+offers.map((offerItem, index)=>{
    return(
       <tr>
                         <td >{index+1}</td>
-                        <td>{offeritem.name}</td>
-                        <td>{offeritem.quantity}</td>
-                        <td>{offeritem.price}</td>
-                        <td><Button clicked={()=>history.push({
+                        <td>{offerItem.name}</td>
+                        <td>{offerItem.quantity}</td>
+                        <td>{offerItem.price}</td>
+                        <td><Button clicked={()=>
+                        {
+                           console.log(offerItem);
+                           localStorage.setItem("offerItem",JSON.stringify(offerItem))
+                           history.push({
                            pathname: "/singleProduct",
-                           data: offeritem
-                        })}>View details</Button></td>
+                  
+                        })}}>View details</Button></td>
                         <td><Button clicked={()=>history.push({
                            pathname: "/message/userid",
-                           data: offeritem
+                           data: offerItem
                         })}>Message</Button></td>
                      </tr>
   )

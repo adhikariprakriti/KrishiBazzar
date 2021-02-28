@@ -34,6 +34,7 @@ const Login=()=>{
         .then(res=>{
           console.log(res.data)
           setAuthorizationHeader(res.data)
+          localStorage.setItem('userDetails',JSON.stringify(res.data));
           localStorage.setItem('token',JSON.stringify(res.data.token));
           history.push({
             pathname: "/dashboard",

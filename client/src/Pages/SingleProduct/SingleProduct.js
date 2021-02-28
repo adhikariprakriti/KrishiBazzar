@@ -15,8 +15,9 @@ const SingleProduct=(props)=>{
   const[date,setDate]=useState('')
   const[show,setShow]=useState(false)
 
-  const {data}=props.location
-  console.log(data)
+  const data = JSON.parse(localStorage.getItem('offerItem'))
+  var product = data
+  console.log(JSON.parse(localStorage.getItem('offerItem')),"LOCALSTORGAE");
   const header = {
     'auth-token': localStorage.getItem('token'),
   }
@@ -37,6 +38,7 @@ const SingleProduct=(props)=>{
 
   }
   const handlePayment=()=>{
+    console.log(product);
     var config = {
       // replace the publicKey with yours
       "publicKey": "test_public_key_6d8add8f0f114055a31fe48bc822e0a7",
@@ -54,7 +56,20 @@ const SingleProduct=(props)=>{
           onSuccess (payload) {
               // hit merchant api for initiating verfication
               console.log(payload);
-              // alert("successful")
+              var orderDetails ={
+                id:product._id,
+                quantity:quantity,
+                deliveryDate:date,
+                productName:product.name,
+                category:product.category,
+                receiverId:JSON.parse(localStorage.getItem('userDetails'))._id,
+                sellerId:product.userId,
+                price:product.price
+              }
+              axios.post('http://localhost:4000/offers/updateoffer',orderDetails)
+                .then(res=>{
+                 console.log(res)
+                })
               setShow(true)
               
           },
@@ -88,21 +103,19 @@ const SingleProduct=(props)=>{
                     <img className="Image" src={tomato} alt="product"/>
                 </div>
                 <div className="ProductInfo">
-                     <h1>Tomato</h1>
-                     <p>Price : <span >Rs 50/kg</span></p>
-                     <p>Seller : <span>Rameshwor Yadav</span></p>
-                     <p className="ProductDescription">It is a freshly prepared in Organic Farms. </p>
+                     <h1>{data.name}</h1>
+                     <p>Price : <span >{data.price}</span></p>
+                     <p>Location of seller : <span>{data.district}</span></p>
+                     <p className="ProductDescription">Description:{data.description}</p>
              
                      <div className="Quantity__button">
                              Quantity:
                            <input onChange={(e)=>setQuantity(e.target.value)}></input>
-                           {console.log(quantity)}           
                </div>
                 
                <div className="Delivary__button">
                    Delivery date:
                    <input onChange={(e)=>setDate(e.target.value)}></input>  
-                   {console.log(date)}           
 
                </div>
                    
@@ -114,7 +127,7 @@ const SingleProduct=(props)=>{
          </div>
          </div>
       
-         <div className="ReviewSection">
+         {/* <div className="ReviewSection">
           <div className="AddReview">
              <h1>ADD review</h1>
              <hr/>
@@ -128,48 +141,19 @@ const SingleProduct=(props)=>{
                         value={review}
                         onChange={e=>setReview(e.target.value)}
                         id="reviewText" />
-                 <button className="button__header" style={{marginTop:"5px"}}>post</button>
+                 <button className="button__header" style={{marginTop:"5px"}} onSubmit={handleSubmit}>post</button>
                </Col>
             </FormGroup>
             </Form>
            </div>
-           {/* <h1>Reviews</h1>
-           <hr/>
-           <div className="Review">
-             <div className="ReviewContent">
-               <div>
-                  <img src={tomato} alt="user" style={{height:"60px",width:"60px",borderRadius:"50%",marginRight:"20px"}}/>
-               </div> 
-               <div>
-                  <p className="ReviewWriter">Rabindranath Taegor</p>
-                  <p className="time">4 days ago</p>
-                 
-                  <span className="ReviewDescription">This is a very interesting Product and I really Loved it.
-                    Oh my god!!Yesterday I saw a tiger.It was behind me.I was really sacared.
-                    djcnflkvnadflknbalgkbnglnglk.wckbdkvjbfjkvbfjkdklnlkgbnlkngf
-                  </span>
-               </div>
-             </div>
- 
-          <hr/>
- 
-          <div className="ReviewContent">
-               <div>
-                  <img src={tomato} alt="user" style={{height:"60px",width:"60px",borderRadius:"50%",marginRight:"20px"}}/>
-               </div> 
-               <div>
-                  <p className="ReviewWriter">Rabindranath Taegor</p>
-                  <p className="time">4 days ago</p>
- 
-                  <span className="ReviewDescription">This is a very interesting Product and I really Loved it.
-                    Oh my god!!Yesterday I saw a tiger.It was behind me.I was really sacared.
-                    djcnflkvnadflknbalgkbnglnglk.wckbdkvjbfjkvbfjkdklnlkgbnlkngf
-                  </span>
-               </div>
-             </div>
-          </div> */}
- 
-         </div>
+         </div> */}
+
+         <h3>
+           Please contact the seller to be sure about delivery location.
+            You can chat with the seller first, be sure about quantity and price of offer before payment.
+            Once you pay ,its not refundable
+
+         </h3>
         
      
     </DashboardLayout>

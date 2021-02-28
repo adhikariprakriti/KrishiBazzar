@@ -1,11 +1,35 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './Reviews.css';
 import tomato from '../../Assets/Images/tomato.jpeg';
-
+import axios from "axios"
 const Reviews=()=>{
+   const [reviews,setReviews]=useState([])
+
+   useEffect(() => {
+      axios.get(`http://localhost:4000/personalreview/${JSON.parse(localStorage.getItem('userDetails'))._id}`)  
+      .then(res=>{
+         var data = res.data.data.review
+         console.log(data)
+         setReviews(data)
+      //   console.log(res.data.data,activeOrder)
+     }).catch(error=>console.log(error))
+   }, [])
+   
       return (
+         
                 <div className="reviews">
-                     <h2>Reviews</h2>
+                
+                   {reviews!=null ?reviews.map((eachReview,index)=>{
+                        return(
+                           <tr>
+                              <td >{index+1}</td>
+                              <td><p className="review__writer">{eachReview.name}</p></td>
+                              <td> <p className="review__description">{eachReview.description}</p></td>
+                        </tr>
+                        )
+                     }):<h2>No reviews till now</h2>
+                  }
+                     {/* <h2>Reviews</h2>
                      <hr/>
                      <div className="review__content">
                         <div>
@@ -19,7 +43,9 @@ const Reviews=()=>{
                           djcnflkvnadflknbalgkbnglnglk.wckbdkvjbfjkvbfjkdklnlkgbnlkngf
                           </p>
                        </div>
-                     </div>
+                     </div> */}
+
+                     
                 </div>
 
     )

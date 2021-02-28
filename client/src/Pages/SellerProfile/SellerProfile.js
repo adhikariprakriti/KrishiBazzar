@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './SellerProfile.css';
 import { Table } from 'reactstrap';
 import DashboardLayout from '../../Dashboard/DashboardLayout/DashboardLayout'
@@ -10,10 +10,22 @@ import Button from '../../Components/Button/Button'
 import Reviews from '../../Components/Reviews/Reviews';
 import Modal from '../../Components/Modal/modal';
 import { ImCross } from 'react-icons/im';
-
+import axios from "axios"
 
 function SellerProfile() {
     const [show,setShow]=useState(false)
+    const [activeOrder,setActiveOrder]=useState([])
+
+    useEffect(() => {
+      axios.get(`http://localhost:4000/offers/activebuyeroffer/${JSON.parse(localStorage.getItem('userDetails'))._id}`)  
+      .then(res=>{
+         var data = res.data.data
+         setActiveOrder(data)
+      //   console.log(res.data.data,activeOrder)
+     }).catch(error=>console.log(error))
+        
+      
+    }, [])
     const handleBackdrop=()=>{
         console.log("clicked")
         setShow(true)
@@ -24,10 +36,7 @@ function SellerProfile() {
             <div className="wrapper">
              <div className="seller">
                 <div className="profile">
-                <Modal show={show} clicked={()=>setShow(!show)}>
-                <ImCross onClick={()=>setShow(!show) } className="cross_btn"/>
-                    <PostReviews/>
-                </Modal>
+                
 
                     <div>
                         <p className="image"><img src={tomato} alt="Profile"/></p>
@@ -44,12 +53,12 @@ function SellerProfile() {
                     </p>
                     <p>Location : {JSON.parse(localStorage.getItem('userDetails')).district}</p>
                     <p>mobile number : {JSON.parse(localStorage.getItem('userDetails')).phone}</p>
-                    <p>Email : {JSON.parse(localStorage.getItem('userDetails')).fname+"@gmail.com"}</p>
+                    <p>Email : {JSON.parse(localStorage.getItem('userDetails')).fname+"."+JSON.parse(localStorage.getItem('userDetails')).lname+"@gmail.com"}</p>
                     <p className="button"><Button><FaEnvelope className="icon"/> Send Message</Button></p>  
                    </div>
                 </div>
 
-                <div><h1 className="leftMargin">Active Orders</h1>
+                <div className="activeOrder_table"><h1 className="leftMargin">Active Orders</h1>
                 <div className="offers_table">
                   <Table striped responsive>
                   <thead>
@@ -57,39 +66,33 @@ function SellerProfile() {
                         <th>S.N</th>
                         <th>Product Name</th>
                         <th>Quantity</th>
-                        <th>Price per kg</th>
+                        <th>Price per unit</th>
+                        <th>Person</th>
                         <th>View details</th>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td >1</td>
-                        <td>Orange</td>
-                        <td>12kg</td>
-                        <td>Rs 1200</td>
-                        <td><Button clicked={handleBackdrop}>Mark Received</Button></td>
-                     </tr>
-                     <tr>
-                        <td >1</td>
-                        <td>Orange</td>
-                        <td>12kg</td>
-                        <td>Rs 1200</td>
-                        <td><Button clicked={handleBackdrop}>Confirm Product</Button></td>
-                     </tr>
-                     <tr>
-                        <td >1</td>
-                        <td>Orange</td>
-                        <td>12kg</td>
-                        <td>Rs 1200</td>
-                        <td><Button clicked={handleBackdrop}>Confirm Product</Button></td>
-                     </tr>
+                     {activeOrder.map((eachOrder,index)=>{
+                        return(
+                           <tr>
+                              {console.log(eachOrder)}
+                              <td >{index+1}</td>
+                              <td>{eachOrder.productName}</td>
+                              <td>{eachOrder.quantity}</td>
+                              <td>{eachOrder.price}</td>
+                              <td>{eachOrder.receiverName}</td>
+                              <td><Button clicked={handleBackdrop}>Mark as completed</Button></td>
+                              <Modal show={show} clicked={()=>setShow(!show)}>
+                <ImCross onClick={()=>setShow(!show) } className="cross_btn"/>
+                    <PostReviews eachOrder={eachOrder}/>
+                </Modal>
+                        </tr>
+                        )
+                     })}
                   </tbody>
               </Table>
             </div>
-
-                
                 </div>
-                <PostReviews/>
                 <Reviews/>
              </div>  
             </div> 
