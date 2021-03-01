@@ -14,11 +14,22 @@ const PostReviews=(props)=>{
     const header = {
       'auth-token': localStorage.getItem('token'),
     }
+    if(JSON.parse(localStorage.getItem('userDetails')).role =="seller"){
+      var role ="buyer"
+      var sellerId = props.eachOrder.receiverId
+
+    }
+    else{
+      var role ="seller"
+      var sellerId = props.eachOrder.sellerId
+
+    }
+    console.log(JSON.parse(localStorage.getItem('userDetails'))._id,props.eachOrder.receiverId);
     const reviewdata={
       review: review,
-      role: JSON.parse(localStorage.getItem('userDetails')).role,
+      role:role ,
       reviewerId: JSON.parse(localStorage.getItem('userDetails'))._id,
-      sellerId: props.eachOrder.sellerId,
+      sellerId: sellerId,
       name :JSON.parse(localStorage.getItem('userDetails')).fname + JSON.parse(localStorage.getItem('userDetails')).lname
   
       }

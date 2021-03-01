@@ -4,6 +4,7 @@
     padding-top: 60px;
     padding-left: 30px ;
     padding-right: 30px;
+    margin-top: 20px;
 }
 .offers_Container{
      margin-top: 30px;
@@ -14,4 +15,17 @@
 }
 .offers_Container h1{
     font-weight: 700;
+}
+.box_style{
+    height: 90px;
+    font-weight: 500;
+    font-size: 24px;
+    
+}
+.box_title{
+    font-weight: 600;
+    font-size: 30px;
+}
+.offers_table{
+    margin-top: 20px;
 }

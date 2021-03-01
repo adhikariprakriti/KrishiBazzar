@@ -10,8 +10,8 @@ import { useHistory } from "react-router-dom";
 
 const Toolbar=()=>{
      const [show,setShow]=useState(false)
+     const [userid,setUserid]=useState()
      const history = useHistory();
-     const userid= JSON.parse(localStorage.getItem('userDetails'))._id
      console.log(userid)
 
      const ToggleSidebar=()=>{
@@ -20,7 +20,7 @@ const Toolbar=()=>{
 
      const clearUser=()=>{
          console.log("cleared")
-        //localStorage.clear();
+        localStorage.clear();
         history.push("/")
 
      }
@@ -33,7 +33,8 @@ const Toolbar=()=>{
             <nav className="DesktopOnly">
                 <div className="navbarDiv">
                     {
-                    (userid ==null)?
+                    
+                    (JSON.parse(localStorage.getItem('userDetails')) ==null)?
                     <>
                   <Button clicked={()=>history.push({
                            pathname: "/registration",
@@ -46,7 +47,8 @@ const Toolbar=()=>{
             </div>
             </nav>
            </header>
-           <Sidebar open={show}/>
+           {JSON.parse(localStorage.getItem('userDetails')) ==null ?
+           null:<Sidebar open={show}/> }
          </Aux>
     )}
 

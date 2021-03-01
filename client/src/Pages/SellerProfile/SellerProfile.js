@@ -55,7 +55,7 @@ function SellerProfile() {
                     <p>Location : {JSON.parse(localStorage.getItem('userDetails')).district}</p>
                     <p>mobile number : {JSON.parse(localStorage.getItem('userDetails')).phone}</p>
                     <p>Email : {JSON.parse(localStorage.getItem('userDetails')).fname+"."+JSON.parse(localStorage.getItem('userDetails')).lname+"@gmail.com"}</p>
-                    <p className="button"><Button><FaEnvelope className="icon"/> Send Message</Button></p>  
+                    <p className="button"><Button> {JSON.parse(localStorage.getItem('userDetails')).role} from {JSON.parse(localStorage.getItem('userDetails')).district} </Button></p>  
                    </div>
                 </div>
 

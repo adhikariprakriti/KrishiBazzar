@@ -19,7 +19,7 @@ function Sidebar({open}) {
     return (
         <div className={attachedClasses}>
             <p className="image"><a href="/sellerProfile"><img  src={tomato} alt="Profile"/></a></p>
-            <h5 className="username" onClick={handleClick}>{JSON.parse(localStorage.getItem('userDetails')).fname + " " + JSON.parse(localStorage.getItem('userDetails')).lname}</h5>
+            <h5 className="username" onClick={handleClick}>{JSON.parse(localStorage.getItem('userDetails')).fname + " " + JSON.parse(localStorage.getItem('userDetails')).lname}</h5> 
             <SidebarItems/>
         </div>
     )

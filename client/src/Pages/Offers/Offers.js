@@ -31,7 +31,7 @@ const Offers=()=>{
                   <div className="offers_table">
                   <Table striped responsive>
                   <thead>
-                     <tr>
+                     <tr className="box_title">
                         <th>S.N</th>
                         <th>Product Name</th>
                         <th>Quantity</th>
@@ -44,7 +44,7 @@ const Offers=()=>{
  {
 offers.map((offerItem, index)=>{
    return(
-      <tr>
+      <tr className="box_style">
                         <td >{index+1}</td>
                         <td>{offerItem.name}</td>
                         <td>{offerItem.quantity}</td>
@@ -57,10 +57,12 @@ offers.map((offerItem, index)=>{
                            pathname: "/singleProduct",
                   
                         })}}>View details</Button></td>
-                        <td><Button clicked={()=>history.push({
+                        <td><Button clicked={()=>{
+                           localStorage.setItem('receiverId',offerItem.userId)
+                           history.push({
                            pathname: "/message/userid",
                            data: offerItem
-                        })}>Message</Button></td>
+                        })}}>Message</Button></td>
                      </tr>
   )
 })

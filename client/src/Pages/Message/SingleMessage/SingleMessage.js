@@ -103,7 +103,7 @@ const SingleMessage=()=>{
                 <Toolbar/>
                 <div className="single_container">
                    <div className="message_header">
-                       <h4>Bhawana Prasain</h4>
+                       <h4>Your message</h4>
                    </div>
                    <div className="border"></div>
                    <div className="message_content">

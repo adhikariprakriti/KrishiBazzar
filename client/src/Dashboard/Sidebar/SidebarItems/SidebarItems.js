@@ -58,9 +58,9 @@ function SidebarItems() {
                link="/message"
                />
              <SidebarItem 
-               label="Update Profile"
+               label="Your Profile"
                icon={<AiFillEdit style={{fontSize:"25px", display: "inline-block",paddingRight:"6px"}}/>}
-               link="/"
+               link="/sellerProfile"
                />
              <SidebarItem 
                label="Payment"
